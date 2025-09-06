@@ -41,3 +41,13 @@ Repo layout:
 - **Summary:** First CSV generated at `results/summary/results.csv` with IPC + mispred rates for all predictors.
 - **Notes:** This enables easy plotting and comparison between predictors in the next step.
 
+# update after step5
+
+### 2025-09-06 (Step 5)
+- **Setup:** Installed `feh` to view plots directly from WSL terminal.
+- **Experiment:** Added `plot_results.py` to generate graphs from `results/summary/results.csv`.
+- **Results:** Two bar charts saved in `results/summary/`:
+  - `ipc_comparison.png`
+  - `mispred_rate_comparison.png`
+- **Notes:** Verified images open correctly using `feh`.
+
