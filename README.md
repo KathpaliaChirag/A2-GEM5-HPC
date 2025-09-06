@@ -51,3 +51,15 @@ Repo layout:
   - `mispred_rate_comparison.png`
 - **Notes:** Verified images open correctly using `feh`.
 
+
+#Update after Step 6
+
+### 2025-09-06 (Step 6)
+- **Setup:** Created `run_all.sh` master script to automate the full pipeline.
+- **Experiment:** Running `./scripts/run_all.sh` executes:
+  1. Batch gem5 runs with all branch predictors
+  2. Parsing of stats into `results/summary/results.csv`
+  3. Plot generation (`ipc_comparison.png`, `mispred_rate_comparison.png`)
+- **Results:** One-command reproducibility achieved.
+- **Notes:** This script is the main entry point for running the entire project workflow.
+
