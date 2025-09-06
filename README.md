@@ -31,3 +31,13 @@ Repo layout:
 - **Experiment:** Ran hello-world on O3CPU + TournamentBP with `--caches --l2cache`.
 - **Results:** Simulation completed; IPC and branch predictor stats confirmed in `stats.txt`.
 - **Notes:** `configs/example/se.py` is deprecated; using `configs/deprecated/example/se.py` for now.
+
+#Update after Step 4
+
+### 2025-09-06 (Step 4)
+- **Setup:** Extended `run_experiment.sh` to batch-run multiple branch predictors (TournamentBP, LocalBP, BiModeBP, LTage).
+- **Experiment:** Automated gem5 runs now save results under `results/raw/<BP>/`.
+- **Results:** Wrote a Python parser (`parse_stats.py`) that extracts IPC and misprediction rate from `stats.txt`.
+- **Summary:** First CSV generated at `results/summary/results.csv` with IPC + mispred rates for all predictors.
+- **Notes:** This enables easy plotting and comparison between predictors in the next step.
+

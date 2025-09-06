@@ -1,30 +1,32 @@
 #!/bin/bash
 # run_experiment.sh
-# Wrapper script to run gem5 with O3CPU + branch predictor
-# Saves results into ../results/raw/
+# Run gem5 O3CPU with multiple branch predictors
+# Saves results in ../results/raw/<BP>/
 
 # -------------------
-# Arguments
-# -------------------
-BP=$1            # branch predictor (e.g., TournamentBP, LocalBP, BiModeBP)
-OUTDIR="../results/raw/${BP}"
-
-# -------------------
-# Paths (adjust if your gem5 folder is elsewhere)
+# Config
 # -------------------
 GEM5=~/HPC-Projects/gem5/build/X86/gem5.opt
 SE=~/HPC-Projects/gem5/configs/deprecated/example/se.py
 PROG=~/HPC-Projects/gem5/tests/test-progs/hello/bin/x86/linux/hello
 
-# -------------------
-# Run
-# -------------------
-mkdir -p $OUTDIR
+# Branch predictors to test
+BPS=("TournamentBP" "LocalBP" "BiModeBP" "LTage")
 
-$GEM5 \
-    --outdir=$OUTDIR \
-    $SE \
-    -c $PROG \
-    --cpu-type=O3CPU \
-    --bp-type=$BP \
-    --caches --l2cache
+# -------------------
+# Run each predictor
+# -------------------
+for BP in "${BPS[@]}"; do
+    OUTDIR="../results/raw/${BP}"
+    echo ">>> Running $BP"
+    mkdir -p $OUTDIR
+
+    $GEM5 \
+        --outdir=$OUTDIR \
+        $SE \
+        -c $PROG \
+        --cpu-type=O3CPU \
+        --bp-type=$BP \
+        --caches --l2cache
+done
+
