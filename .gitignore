@@ -1,17 +1,10 @@
-# Build directories
 build/
-obj/
-
-# Compiled object files
-*.o
-*.so
-*.a
-
-# Python caches
+m5opt/
+*.opt
+*.fast
+*.dbg
+*.log
 *.pyc
 __pycache__/
-
-# Temporary files
-*.swp
-*.tmp
-*~
+results/raw/*
+!results/raw/.gitkeep
