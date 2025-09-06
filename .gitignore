@@ -1,0 +1,17 @@
+# Build directories
+build/
+obj/
+
+# Compiled object files
+*.o
+*.so
+*.a
+
+# Python caches
+*.pyc
+__pycache__/
+
+# Temporary files
+*.swp
+*.tmp
+*~
