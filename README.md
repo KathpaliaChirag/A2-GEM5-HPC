@@ -1,4 +1,14 @@
 
+
+# A2-gem5-HPC — Branch Prediction Experiments
+
+## Overview
+This project evaluates different branch prediction schemes in gem5 using an Out-of-Order CPU (O3CPU).  
+We automate experiments, parse results into CSV, and generate plots for IPC and misprediction rate.
+
+---
+
+## Repo Structure
 We implement/configure multiple branch predictors and evaluate them on an out-of-order (O3) core in gem5, reporting IPC, misprediction rate, and performance impact across workloads. See `reports/` for results and write-up.
 
 Repo layout:
@@ -63,3 +73,52 @@ Repo layout:
 - **Results:** One-command reproducibility achieved.
 - **Notes:** This script is the main entry point for running the entire project workflow.
 
+#Update at step 7
+
+### 2025-09-06 (Step 7)
+- **Setup:** Added real workloads (PARSEC + MiBench) to make experiments realistic.
+- **Workloads:**
+  - **PARSEC blackscholes** → compute-heavy benchmark  
+    Build steps:
+    ```bash
+    git clone https://github.com/bamos/parsec-benchmark.git ~/HPC-Projects/workloads/parsec
+    cd ~/HPC-Projects/workloads/parsec
+    source env.sh
+    parsecmgmt -a build -p blackscholes
+    ```
+    Binary at:
+    ```
+    ~/HPC-Projects/workloads/parsec/pkgs/apps/blackscholes/inst/amd64-linux.gcc/bin/blackscholes
+    ```
+  - **MiBench basicmath_small** → branch-heavy benchmark  
+    Build steps:
+    ```bash
+    git clone https://github.com/embecosm/mibench.git ~/HPC-Projects/workloads/mibench
+    cd ~/HPC-Projects/workloads/mibench/automotive/basicmath
+    make
+    ```
+    Binaries at:
+    ```
+    basicmath_small
+    basicmath_large
+    ```
+- **Experiment:** These workloads will be integrated into `run_all.sh` so that results are saved under: results/raw/<workload>/<predictor>/
+
+- **Results:** Prepared realistic benchmarks for IPC + misprediction evaluation.
+- **Notes:** `workloads/` folder is ignored in Git. Each user must set up workloads locally by following these steps.
+
+## step 8 fixed and ran run_all.sh and fixed plot file now we are plotting for TournamentBP LocalBP BiModeBP LTAGE
+
+### 2025-09-06 (Step 9)
+- **Setup:** Extended predictor list to prepare for *advanced predictors*.
+- **Predictors:** Currently automated for:
+  - TournamentBP
+  - LocalBP
+  - BiModeBP
+  - LTAGE
+- **Results:** Verified automation works for both `basicmath_small` (math-heavy) and `blackscholes` (computation-heavy). CSV + plots generated per workload and globally.
+- **Next:** 
+  - Add perceptron predictors (`MultiperspectivePerceptron8KB`, `MultiperspectivePerceptron64KB`)  
+  - Implement custom `GshareBP`  
+  - Increase instruction cap to 100M for fairness  
+  - Add calibration mode for runtime estimation
