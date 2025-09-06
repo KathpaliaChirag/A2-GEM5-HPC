@@ -8,3 +8,15 @@ m5opt/
 __pycache__/
 results/raw/*
 !results/raw/.gitkeep
+
+# Ignore benchmark binaries and large data
+workloads/parsec/
+workloads/mibench/
+
+# Ignore gem5 build outputs
+m5out/
+*.log
+
+# Ignore generated results, but keep summaries
+results/raw/
+!results/summary/
