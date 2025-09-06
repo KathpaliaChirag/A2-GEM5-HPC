@@ -27,3 +27,7 @@ Repo layout:
 - Added `scripts/run_experiment.sh` to automate gem5 runs and save results in `results/raw/`.
 - Verified that `stats.txt` captures both IPC and branch predictor statistics (lookups, squashes).
 
+- **Setup:** Built gem5 (v25.0.0.1) on WSL2 successfully.
+- **Experiment:** Ran hello-world on O3CPU + TournamentBP with `--caches --l2cache`.
+- **Results:** Simulation completed; IPC and branch predictor stats confirmed in `stats.txt`.
+- **Notes:** `configs/example/se.py` is deprecated; using `configs/deprecated/example/se.py` for now.
