@@ -16,3 +16,14 @@ Repo layout:
 - Verified baseline run with TournamentBP on hello-world benchmark
 - Next step: wrapper scripts to automate experiments
 
+#Update after step 3
+
+## Progress Log
+
+### 2025-09-06
+- Built gem5 (v25.0.0.1) successfully on WSL2.
+- Verified O3CPU runs correctly with `--caches` (L1) and optional `--l2cache`.
+- Confirmed TournamentBP baseline run on the hello-world benchmark.
+- Added `scripts/run_experiment.sh` to automate gem5 runs and save results in `results/raw/`.
+- Verified that `stats.txt` captures both IPC and branch predictor statistics (lookups, squashes).
+
